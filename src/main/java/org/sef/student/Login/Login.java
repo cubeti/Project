@@ -1,46 +1,38 @@
 package org.sef.student.Login;
 import javafx.application.Application;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 import org.sef.student.Register.Register;
 
+import java.io.IOException;
+import java.util.Objects;
+
 public class Login extends Application{
     Button button1,button2;
-    Stage window;
-    Scene scene1,scene2;
+    public static Stage window;
+    public static Scene scene1;
     public static void run(String[] args) {
         launch(args);
     }
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         window=primaryStage;
         window.setTitle("LOL app");
-
-        Label label1=new Label("Login page");
-        VBox layout1 = new VBox(50);
-
-
-        //button1
-        button1 = new Button("New Here?Register!");
-        button1.setOnAction(e -> {
-            Register reg=new Register();
-
-            Scene regscene = null;
-            try {
-                regscene = reg.getScene(scene1, window);
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-
-            window.setScene(regscene);
-        });
-
-        layout1.getChildren().addAll(label1,button1);
-        scene1 = new Scene(layout1,1600,900);
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("login.fxml")));
+        scene1 = new Scene(root);
         window.setScene(scene1);
         window.show();
         }
+        public static Stage getWindow()
+        {
+            return window;
+        }
+    public static Scene getScene()
+    {
+        return scene1;
+    }
 }
