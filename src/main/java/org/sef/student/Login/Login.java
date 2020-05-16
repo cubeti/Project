@@ -4,9 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
 import javafx.stage.*;
-import org.sef.student.Register.Register;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -27,12 +25,4 @@ public class Login extends Application{
         window.setScene(scene1);
         window.show();
         }
-        public static Stage getWindow()
-        {
-            return window;
-        }
-    public static Scene getScene()
-    {
-        return scene1;
-    }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sef.student.Login.LoginController">
    <children>
@@ -13,9 +13,10 @@
             <Font name="Arial Bold" size="38.0" />
          </font>
       </Label>
-      <TextField id="username" layoutX="508.0" layoutY="238.0" promptText="Username" />
-      <PasswordField id="password" layoutX="508.0" layoutY="328.0" promptText="Password" />
-      <Button onAction="#goRegister" layoutX="508.0" layoutY="409.0" mnemonicParsing="false" text="Register" />
-      <Button onAction="#log" layoutX="630.0" layoutY="409.0" mnemonicParsing="false" text="Log in" />
+      <TextField fx:id="username" layoutX="508.0" layoutY="238.0" promptText="Username" />
+      <PasswordField fx:id="password" layoutX="508.0" layoutY="328.0" promptText="Password" />
+      <Button layoutX="508.0" layoutY="409.0" mnemonicParsing="false" onAction="#goRegister" text="Register" />
+      <Button layoutX="630.0" layoutY="409.0" mnemonicParsing="false" onAction="#log" text="Log in" />
+      <Text fx:id="registrationMessage" layoutX="499.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="205.6708984375" />
    </children>
 </AnchorPane>

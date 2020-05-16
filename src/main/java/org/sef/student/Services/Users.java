@@ -3,8 +3,7 @@ package org.sef.student.Services;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
-import org.sef.student.Exceptions.CouldNotWriteUsersException;
-import org.sef.student.Exceptions.UsernameAlreadyExistsException;
+import org.sef.student.Exceptions.*;
 import org.sef.student.Model.User;
 
 import java.io.IOException;
@@ -13,18 +12,23 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 
 public class Users {
 
     private static List<User> users;
-    private static final Path USERS_PATH = FileSystemService.getPathToFile("config", "users.json");
-
+    private static User curent=new User();
+    private static final Path USERS_PATH = FileSystemService.getPathToFile("users", "users.json");
+    public static void setCurrentUser(String username,String role)
+    {
+        curent.setUsername(username);
+        curent.setRole(role);
+    }
     public static void loadUsersFromFile() throws IOException {
-
         if (!Files.exists(USERS_PATH)) {
-            FileUtils.copyURLToFile(Users.class.getClassLoader().getResource("users.json"), USERS_PATH.toFile());
+            FileUtils.copyURLToFile(Objects.requireNonNull(Users.class.getClassLoader().getResource("users.json")), USERS_PATH.toFile());
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -35,7 +39,7 @@ public class Users {
 
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
-        users.add(new User(username, encodePassword(username, password), role));
+        users.add(new User(username, encode(password), role));
         persistUsers();
     }
 
@@ -44,6 +48,14 @@ public class Users {
             if (Objects.equals(username, user.getUsername()))
                 throw new UsernameAlreadyExistsException(username);
         }
+    }
+    public static String checkAccountExist(String username,String password){
+        for (User user : users) {
+            if (Objects.equals(username, user.getUsername()))
+                if( Objects.equals(password,decode(user.getPassword())))
+                    return user.getRole();
+        }
+        return null;
     }
 
     private static void persistUsers() {
@@ -74,6 +86,18 @@ public class Users {
             throw new IllegalStateException("SHA-512 does not exist!");
         }
         return md;
+    }
+    public static String encode(String str)
+    {
+        Base64.Encoder e=Base64.getEncoder();
+        byte[] encoded=e.encode(str.getBytes());
+        return new String(encoded);
+    }
+    public static String decode(String str)
+    {
+        Base64.Decoder e=Base64.getDecoder();
+        byte[] encoded=e.decode(str);
+        return new String(encoded);
     }
 
 
