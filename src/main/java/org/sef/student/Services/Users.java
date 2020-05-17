@@ -21,6 +21,7 @@ public class Users {
     private static List<User> users;
     private static User curent=new User();
     private static final Path USERS_PATH = FileSystemService.getPathToFile("users", "users.json");
+    private static final Path Champ_PATH = FileSystemService.getPathToFile("champ", "champ.json");
     public static void setCurrentUser(String username,String role)
     {
         curent.setUsername(username);
@@ -99,6 +100,9 @@ public class Users {
         byte[] encoded=e.decode(str);
         return new String(encoded);
     }
-
+    public static String getCurrentUsername()
+    {
+        return curent.getUsername();
+    }
 
 }

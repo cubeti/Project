@@ -9,6 +9,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.sef.student.Dev.Developer;
+import org.sef.student.Player.Player;
 import org.sef.student.Register.AlertBox;
 import org.sef.student.Services.Users;
 
@@ -37,6 +39,8 @@ public class LoginController {
     @FXML
     public void log(ActionEvent event)
     {
+            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+
             event.consume();
             if(username.getText().isEmpty())
             {
@@ -52,7 +56,12 @@ public class LoginController {
                     if(role!=null)
                     {
                         Users.setCurrentUser(username.getText(),role);
-                        System.out.println("hello " + username.getText() + " u are logged in as a " + role);
+                        if (role.equals("Dev")) Developer.start(window);
+                        else
+                            if (role.equals("Player")) Player.start(window);
+
+                            else
+                                System.out.println("hello " + username.getText() + " u are logged in as a " + role);
                     }
 
                     else {
