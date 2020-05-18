@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sef.student.Register.RegistrationController">
+   <children>
+      <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: purple;" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="511.0" layoutY="94.0" prefHeight="33.0" prefWidth="174.0" text="Registration">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usernameField" layoutX="504.0" layoutY="205.0" promptText="username" />
+      <PasswordField fx:id="passwordField" layoutX="504.0" layoutY="285.0" promptText="password" />
+      <ChoiceBox fx:id="role" layoutX="499.0" layoutY="367.0" prefWidth="200.0" />
+      <Button layoutX="561.0" layoutY="454.0" mnemonicParsing="false" onAction="#handleRegisterAction" text="Register">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Button>
+      <Text fx:id="registrationMessage" layoutX="496.0" layoutY="530.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="211.6708984375" />
+   </children>
+</AnchorPane>
