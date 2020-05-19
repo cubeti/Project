@@ -8,9 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.sef.student.Login.Login;
-import org.sef.student.Services.Champions;
-import org.sef.student.Services.Items;
-import org.sef.student.Services.Users;
+import org.sef.student.Services.*;
 
 import java.io.IOException;
 
@@ -19,6 +17,10 @@ public class Main{
     Button button;
     public static void main(String[] args) throws IOException {
         Users.loadUsersFromFile();
+        Champions.loadChampionsFromFile();
+        Items.loadItemsFromFile();
+        Games.loadGamesFromFile();
+        Messages.loadMSGFromFile();
         Login.run(args);
     }
 }
